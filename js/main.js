@@ -15,6 +15,16 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Handle form submissions
     initFormSubmission();
+    
+    // Initialize lazy loading for images
+    lazyLoadImages();
+    
+    // Initialize UI components for AI Action Figure
+    initImageHoverEffects();
+    initScrollAnimations();
+    initTestimonialRotation();
+    previewAITransformation();
+    initThemeToggle();
 });
 
 // Mobile navigation menu toggle
@@ -217,38 +227,6 @@ function lazyLoadImages() {
     }
 }
 
-// Call lazy loading after DOM content loaded
-document.addEventListener('DOMContentLoaded', lazyLoadImages);
-
-// Main JavaScript for AI Action Figure website
-// Include the language support
-document.addEventListener('DOMContentLoaded', function() {
-    // Initialize mobile menu
-    initMobileMenu();
-    
-    // Initialize image hover effects
-    initImageHoverEffects();
-    
-    // Initialize scroll animations
-    initScrollAnimations();
-    
-    // Initialize testimonial rotation
-    initTestimonialRotation();
-});
-
-// Mobile menu toggle
-function initMobileMenu() {
-    const menuToggle = document.querySelector('.mobile-menu-toggle');
-    const mobileMenu = document.querySelector('.mobile-menu');
-    
-    if (menuToggle && mobileMenu) {
-        menuToggle.addEventListener('click', function() {
-            mobileMenu.classList.toggle('active');
-            document.body.classList.toggle('menu-open');
-        });
-    }
-}
-
 // Image hover effects
 function initImageHoverEffects() {
     const galleryItems = document.querySelectorAll('.gallery-item');
@@ -307,7 +285,7 @@ function initTestimonialRotation() {
 // AI transformation preview (simulation)
 function previewAITransformation() {
     const previewButton = document.querySelector('[href="#transform"]');
-    const heroImage = document.querySelector('.hero-image img');
+    const heroImage = document.querySelector('.hero-placeholder img');
     
     if (previewButton && heroImage) {
         previewButton.addEventListener('click', function(e) {
@@ -320,9 +298,14 @@ function previewAITransformation() {
             // Simulate AI processing time
             setTimeout(function() {
                 // Replace with "transformed" image
-                heroImage.src = 'images/transformed-example.svg';
+                heroImage.src = 'images/superhero.svg';
                 heroImage.classList.remove('processing');
-                previewButton.textContent = 'Create My ChatGPT Figure';
+                
+                // Get current language and set appropriate button text
+                const currentLang = document.getElementById('language-selector').value;
+                const translations = window.translations || {};
+                const btnText = translations[currentLang]?.btn_transform || 'Create My ChatGPT Figure';
+                previewButton.textContent = btnText;
                 
                 // Show success message
                 const successMessage = document.createElement('div');

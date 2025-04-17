@@ -2,6 +2,10 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize language selector
     initLanguageSelector();
+    
+    // Apply translations based on browser language or saved preference
+    const initialLang = detectUserLanguage();
+    applyTranslations(initialLang);
 });
 
 // Translation object - key phrases translated to different languages
@@ -239,6 +243,9 @@ const translations = {
     }
 };
 
+// 使用window对象使translations可全局访问
+window.translations = translations;
+
 // Function to initialize language selector
 function initLanguageSelector() {
     const languageSelector = document.getElementById('language-selector');
@@ -246,13 +253,13 @@ function initLanguageSelector() {
     
     // Set default language from browser or localStorage
     const savedLanguage = localStorage.getItem('preferred-language');
-    if (savedLanguage && translations[savedLanguage]) {
+    if (savedLanguage && window.translations[savedLanguage]) {
         languageSelector.value = savedLanguage;
         applyTranslations(savedLanguage);
     } else {
         // Try to get browser language
         const browserLang = navigator.language.split('-')[0];
-        if (translations[browserLang]) {
+        if (window.translations[browserLang]) {
             languageSelector.value = browserLang;
             applyTranslations(browserLang);
         }
@@ -268,9 +275,9 @@ function initLanguageSelector() {
 
 // Function to apply translations to the page
 function applyTranslations(lang) {
-    if (!translations[lang]) return;
+    if (!window.translations[lang]) return;
     
-    const t = translations[lang];
+    const t = window.translations[lang];
     
     // Update navigation
     updateElementText('[href="#features"]', t.nav_features);
@@ -337,7 +344,7 @@ function detectUserLanguage() {
     browserLang = browserLang.split('-')[0]; // Get the primary language part
     
     // Check if we support this language
-    if (translations[browserLang]) {
+    if (window.translations[browserLang]) {
         return browserLang;
     }
     
