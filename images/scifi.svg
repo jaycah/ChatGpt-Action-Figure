@@ -1,0 +1,13 @@
+<svg width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="300" fill="#10B981"/>
+  <rect x="100" y="50" width="200" height="200" rx="10" fill="#065F46"/>
+  <circle cx="200" cy="100" r="35" fill="#A7F3D0"/>
+  <rect x="175" y="135" width="50" height="80" rx="5" fill="#059669"/>
+  <rect x="185" y="145" width="30" height="60" fill="#A7F3D0"/>
+  <rect x="165" y="170" width="20" height="35" rx="10" fill="#059669"/>
+  <rect x="215" y="170" width="20" height="35" rx="10" fill="#059669"/>
+  <path d="M190 155H210M190 165H210M190 175H210" stroke="#34D399" stroke-width="2"/>
+  <circle cx="190" cy="100" r="5" fill="#065F46"/>
+  <circle cx="210" cy="100" r="5" fill="#065F46"/>
+  <text x="200" y="270" text-anchor="middle" font-family="sans-serif" font-size="16" fill="#A7F3D0">Sci-Fi Warrior</text>
+</svg> 
